@@ -1,0 +1,6 @@
+/webpack-package/
+/node_modules/
+*.log
+dist
+assets
+/webpack-demo/

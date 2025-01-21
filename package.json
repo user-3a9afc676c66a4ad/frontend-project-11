@@ -1,0 +1,56 @@
+{
+  "name": "@hexlet/code",
+  "version": "0.1.0",
+  "description": "[![Actions Status](https://github.com/user-3a9afc676c66a4ad/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/user-3a9afc676c66a4ad/frontend-project-11/actions)",
+  "author": "Oleg Osipov",
+  "license": "ISC",
+  "jest": {
+    "verbose": true,
+    "testEnvironmentOptions": {
+      "url": "http://localhost/"
+    },
+    "testEnvironment": "jsdom"
+  },
+  "main": "src/init.js",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
+    "@eslint/js": "^9.9.1",
+    "@webpack-cli/generators": "^3.0.7",
+    "ajv": "^8.17.1",
+    "autoprefixer": "^10.4.20",
+    "babel-jest": "^29.3.1",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.11.0",
+    "debug": "^4.3.4",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^27.2.1",
+    "file-loader": "^6.2.0",
+    "globals": "^15.9.0",
+    "html-webpack-plugin": "^5.6.3",
+    "jest": "^29.3.1",
+    "jest-cli": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "postcss-loader": "^7.3.4",
+    "postcss-preset-env": "^7.8.3",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4",
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.2"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "npm-check-updates": "^16.6.2"
+  }
+}
