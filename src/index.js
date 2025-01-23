@@ -1,10 +1,7 @@
-// @ts-check
-// mport './styles.scss';
-// import 'bootstrap';
+// import './styles.scss';
+// import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+import app from './app.js';
 
-console.log('Hello World!');
-/*
-import init from './init.js';
-import './style.css';
-init();
-*/
+app();
