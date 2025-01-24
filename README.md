@@ -5,4 +5,4 @@
 
 ### RSS aggregator
 
-[View the RSS aggregator here](https://frontend-project-11-5h2c8ztft-olegs-projects-aab0aca5.vercel.app/)
+[View the RSS aggregator here](https://frontend-project-11-91k0154e8-olegs-projects-aab0aca5.vercel.app)
