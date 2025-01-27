@@ -1,7 +1,3 @@
-/* export default function () {
-  console.log('This is the default exported');
-} */
-
 /* eslint-disable no-param-reassign */
 import 'bootstrap';
 import onChange from 'on-change';
@@ -10,6 +6,8 @@ import * as yup from 'yup';
 import resources from './locales/ru.js';
 import localeSettings from './locales/localeSettings.js';
 import { initialRender, render } from './view.js';
+import axios from 'axios';
+import parse from './parser.js';
 
 const validate = (url, urls) => {
   const schema = yup.string().url().notOneOf(urls).required();
@@ -24,6 +22,71 @@ const validate = (url, urls) => {
 };
 
 yup.setLocale(localeSettings);
+
+const createPosts = (feedID, postsContent) => {
+  const posts = postsContent.map((content) => {
+    const post = { id: crypto.randomUUID(), feedID, content };
+    return post;
+  });
+  return posts;
+};
+
+const addProxy = (url) => {
+  const proxyURL = new URL('https://allorigins.hexlet.app/get');
+  proxyURL.searchParams.append('disableCache', true);
+  proxyURL.searchParams.append('url', url);
+  return proxyURL;
+};
+
+const getResponse = (inputData, state) => {
+  const url = addProxy(inputData);
+  axios
+    .get(url)
+    .then((response) => {
+      state.loadingProcess.status = 'successfulLoading';
+      state.loadingProcess.feedback = 'successfulLoading';
+      const parsedData = parse(response.data.contents);
+      const { feedContent, postsContent } = parsedData;
+      const feed = { id: crypto.randomUUID(), url: inputData, content: feedContent };
+      const posts = createPosts(feed.id, postsContent);
+      state.feeds.feedsList.unshift(feed);
+      state.feeds.postsList.unshift(...posts);
+    })
+    .catch((error) => {
+      state.loadingProcess.status = 'failedLoading';
+      if (error.message === 'invalidRSS') {
+        state.loadingProcess.feedback = error.message;
+      } else if (error.message === 'Network Error') {
+        state.loadingProcess.feedback = 'networkError';
+      }
+    });
+};
+
+const getNewPosts = (state) => {
+  const { feedsList, postsList } = state.feeds;
+
+  const promises = feedsList.map((feed) => {
+    const feedURL = addProxy(feed.url);
+    return axios.get(feedURL).then((response) => {
+      const parsedData = parse(response.data.contents);
+      const { postsContent } = parsedData;
+      const addedPostsLinks = postsList.map((post) => post.content.link);
+      const newPostsContent = postsContent.filter(({ link }) => !addedPostsLinks.includes(link));
+
+      if (newPostsContent.length !== 0) {
+        const newPosts = createPosts(feed.id, newPostsContent);
+        state.feeds.postsList.unshift(...newPosts);
+      }
+      return state;
+    });
+  });
+
+  Promise.all(promises).finally(() => {
+    setTimeout(() => {
+      getNewPosts(state);
+    }, updateTime);
+  });
+};
 
 export default () => {
   const i18nextInstance = i18next.createInstance();
