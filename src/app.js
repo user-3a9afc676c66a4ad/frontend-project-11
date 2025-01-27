@@ -8,6 +8,7 @@ import localeSettings from './locales/localeSettings.js';
 import { initialRender, render } from './view.js';
 import axios from 'axios';
 import parse from './parser.js';
+import updateTime from './updateTime.js';
 
 const validate = (url, urls) => {
   const schema = yup.string().url().notOneOf(urls).required();
