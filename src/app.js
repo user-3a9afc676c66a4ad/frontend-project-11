@@ -131,7 +131,6 @@ export default () => {
           labelForInput: document.querySelector('label[for="url-input"]'),
           submitButton: document.querySelector('button[type="submit"]'),
           mainDescription: document.querySelector('.lead'),
-          // exampleInput: document.querySelector('.text-muted'),
           creatorInformation: document.querySelector('.text-center').firstChild,
         },
       };
