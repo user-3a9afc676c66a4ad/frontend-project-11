@@ -1,8 +1,4 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
-import pluginReact from 'eslint-plugin-react';
-
-import globals from 'globals';
 
 import path from 'path';
 import { fileURLToPath } from 'url';

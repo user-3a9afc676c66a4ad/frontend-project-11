@@ -3,10 +3,10 @@ import 'bootstrap';
 import onChange from 'on-change';
 import i18next from 'i18next';
 import * as yup from 'yup';
+import axios from 'axios';
 import resources from './locales/ru.js';
 import localeSettings from './locales/localeSettings.js';
 import { initialRender, render } from './view.js';
-import axios from 'axios';
 import parse from './parser.js';
 import updateTime from './updateTime.js';
 
@@ -131,7 +131,7 @@ export default () => {
           labelForInput: document.querySelector('label[for="url-input"]'),
           submitButton: document.querySelector('button[type="submit"]'),
           mainDescription: document.querySelector('.lead'),
-          exampleInput: document.querySelector('.text-muted'),
+          // exampleInput: document.querySelector('.text-muted'),
           creatorInformation: document.querySelector('.text-center').firstChild,
         },
       };
