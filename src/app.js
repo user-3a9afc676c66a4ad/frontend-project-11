@@ -9,6 +9,7 @@ import localeSettings from './locales/localeSettings.js';
 import { initialRender, render } from './view.js';
 import parse from './parser.js';
 import updateTime from './updateTime.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const validate = (url, urls) => {
   const schema = yup.string().url().notOneOf(urls).required();
@@ -26,7 +27,7 @@ yup.setLocale(localeSettings);
 
 const createPosts = (feedID, postsContent) => {
   const posts = postsContent.map((content) => {
-    const post = { id: crypto.randomUUID(), feedID, content };
+    const post = { id: uuidv4(), feedID, content };
     return post;
   });
   return posts;
@@ -48,7 +49,7 @@ const getResponse = (inputData, state) => {
       state.loadingProcess.feedback = 'successfulLoading';
       const parsedData = parse(response.data.contents);
       const { feedContent, postsContent } = parsedData;
-      const feed = { id: crypto.randomUUID(), url: inputData, content: feedContent };
+      const feed = { id: uuidv4(), url: inputData, content: feedContent };
       const posts = createPosts(feed.id, postsContent);
       state.feeds.feedsList.unshift(feed);
       state.feeds.postsList.unshift(...posts);
@@ -131,6 +132,7 @@ export default () => {
           labelForInput: document.querySelector('label[for="url-input"]'),
           submitButton: document.querySelector('button[type="submit"]'),
           mainDescription: document.querySelector('.lead'),
+          exampleInput: document.querySelector('.text-muted').firstChild,
           creatorInformation: document.querySelector('.text-center').firstChild,
         },
       };
