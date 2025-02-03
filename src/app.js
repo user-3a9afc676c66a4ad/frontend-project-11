@@ -4,12 +4,12 @@ import onChange from 'on-change';
 import i18next from 'i18next';
 import * as yup from 'yup';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import resources from './locales/ru.js';
 import localeSettings from './locales/localeSettings.js';
 import { initialRender, render } from './view.js';
 import parse from './parser.js';
 import updateTime from './updateTime.js';
-import { v4 as uuidv4 } from 'uuid';
 
 const validate = (url, urls) => {
   const schema = yup.string().url().notOneOf(urls).required();
